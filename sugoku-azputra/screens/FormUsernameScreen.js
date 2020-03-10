@@ -7,7 +7,7 @@ import {
     StyleSheet
 } from 'react-native';
 import Constants from 'expo-constants';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import getBoard from '../store/actions/getBoardAction'
 
 const styles = StyleSheet.create({
@@ -26,21 +26,22 @@ const styles = StyleSheet.create({
 
 export default function FormUsernameScreen(props) {
     const dispatch = useDispatch()
+    const username = useSelector((state) => state.userReducer.username);
     const [name, setName] = useState('')
 
     const playGame = (level) => {
         if (level === 'easy') {
             dispatch(getBoard('easy'))
             dispatch({ type: 'USERNAME', payload: name })
-            props.navigation.navigate('BoardGameScreen', { level: 'easy' })
+            props.navigation.navigate('PlayGameScreen', { level: 'easy' })
         } else if (level === 'medium') {
             dispatch(getBoard('medium'))
             dispatch({ type: 'USERNAME', payload: name })
-            props.navigation.navigate('BoardGameScreen', { level: 'medium' })
+            props.navigation.navigate('PlayGameScreen', { level: 'medium' })
         } else {
             dispatch(getBoard('hard'))
             dispatch({ type: 'USERNAME', payload: name })
-            props.navigation.navigate('BoardGameScreen', { level: 'hard' })
+            props.navigation.navisgate('PlayGameScreen')
         }
     }
 

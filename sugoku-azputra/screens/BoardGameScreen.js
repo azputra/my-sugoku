@@ -36,12 +36,13 @@ export default function BoardGameScreen(props) {
 
     // useEffect(() => {
     //     setSolvedBoard(boardsGame)
+    //     console.log(solvedBoard, "ini boardSolved");
     // }, [setSolvedBoard])
 
     // console.log(boardsGame);
-    // console.log(solvedBoard, "ini boardSolved");
     // timernya di panggil ketika di use effect
     // setgame status di set di effect
+
     const timer = (detik) => {
         setTimeInterval(
             setInterval(() => {
@@ -65,7 +66,7 @@ export default function BoardGameScreen(props) {
                     <Text style={{ fontSize: 30, fontWeight: 'bold' }}>SUDOKU</Text>
                 </View>
                 {
-                    boardsGame ?
+                    username && boardsGame ?
                         boardsGame.map((boardRow, i) => {
                             return (
                                 <BoardColumn key={i} boardRow={boardRow} row={i} />
